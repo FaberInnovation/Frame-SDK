@@ -1,0 +1,134 @@
+#HTTP API (alpha version)
+
+Protocol: HTTP porta 80, 
+Request: GET (action, value)
+Response: plain-text
+
+#Actions             
+
+show-home
+value: null
+response: OK
+
+show-browser
+value: url pagina web 
+response: OK
+
+get-power 
+value: null 
+response: potenza motore (0=off, 1, 2, 3)
+
+set-power 
+value: potenza motore (0=off, 1, 2, 3) 
+response: OK / ERR
+
+get-light 
+value: null 
+response: potenza luce (0=off, 1, 2, 3)
+
+set-light 
+value: potenza luce (0=off, 1, 2, 3) 
+response: OK / ERR
+
+get-mirror 
+value: null 
+response: stato specchio (0=monitor visibile, 1=specchio)
+
+set-mirror 
+value: stato specchio (0=monitor visibile, 1=specchio) 
+restituisce: OK browser-up 
+value: null 
+response: OK
+
+browser-down 
+value: null 
+response: OK
+
+show-image 
+value: index immagine
+restituisce: OK / ERR
+
+get-image 
+value: null 
+response: index immagine attualmente visualizzato
+
+show-slider 
+value: ID slider
+restituisce: OK
+
+image-prev 
+value: null 
+restituisce: OK
+
+image-next 
+value: null 
+restituisce: OK
+
+get-sensors 
+value: null 
+response: array ID sensori divisi da pipe “|”
+
+get-sensor-info 
+value: ID sensore (ricavato da get-sensors) 
+response: <nome>|<um>|<valore>|<allarme>
+
+set-sensor -info
+value: <ID>|<nome>|<um>|<valore>|<allarme>
+response: OK
+<ID> è un ID univoco, considerando che da 1 a 150 sono riservati
+
+get-output 
+value: ID
+restituisce: <nome>|<um>|<valore>
+
+set-output 
+value: <ID>|<valore>
+response: OK / ERR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+register-output 
+value: <ID>|<nome>|<um>|<url>
+restituisce: OK / ERR
+<url> indica l’url da usare sulla richiesta GET per notificare il
+dispositivo a seguito di una “set-output”. A tale url saranno passati in get
+“action=set-output&value=<ID>|<valore>”
+<ID> è un ID univoco, considerando che da 1 a 10 sono riservati
+
